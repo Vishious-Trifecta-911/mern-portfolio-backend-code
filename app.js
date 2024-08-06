@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
-import run from "./database/dbConnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./router/messageRoutes.js";
 import userRouter from "./router/userRoutes.js";
@@ -11,6 +10,7 @@ import timelineRouter from "./router/timelineRoutes.js";
 import softwareAppRouter from "./router/softwareAppRoutes.js";
 import skillRouter from "./router/skillRoutes.js";
 import ProjectRouter from "./router/projectRoutes.js";
+import dbConnection from "./database/dbConnection.js";
 
 const app = express();
 
@@ -40,7 +40,7 @@ app.use("/api/v1/softwareApps", softwareAppRouter);
 app.use("/api/v1/skills", skillRouter);
 app.use("/api/v1/projects", ProjectRouter);
 
-run();
+dbConnection();
 
 app.use(errorMiddleware);
 
